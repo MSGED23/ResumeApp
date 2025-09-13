@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
-import { motion, scale, useInView, useScroll, useTransform } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';//scale, useScroll, useTransform
 import {
 
     Mail, Phone, MapPin, Linkedin, Github, ExternalLink,
     Menu, X, ChevronDown, Briefcase, Code, Award, BookOpen,
-    Send, Sun, Moon, Sparkles, Star, Zap, Heart, Globe,
+    Send, Sun, Moon, Sparkles, Zap, Heart, Globe,
     Cloud, Database, Server, Cpu, Palette, Brush, Rocket,
-    Target, ArrowRight, Calendar, User, School, Book,
+    Target, Calendar, User, //School, Book, Star,ArrowRight, 
     Shield, CheckCircle, Layers, Code2, Container
 } from 'lucide-react';
 import { JSX } from 'react/jsx-runtime';
@@ -77,9 +77,9 @@ const Portfolio = () => {
     const profileImage = "/images/ash.jpg"; // or "/images/profile.jpg"
 
     // Scroll progress for parallax effects
-    const { scrollYProgress } = useScroll();
-    const opacityRange = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [1, 1, 0.3, 0.1]);
-    const scaleValue = useTransform(scrollYProgress, [0, 0.5], [1, 1.1]);
+    // const { scrollYProgress } = useScroll();
+    // const opacityRange = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [1, 1, 0.3, 0.1]);
+    // const scaleValue = useTransform(scrollYProgress, [0, 0.5], [1, 1.1]);
 
     // Toggle dark mode
     useEffect(() => {
@@ -92,6 +92,12 @@ const Portfolio = () => {
 
     // Skill data with colors
     const skillCategories: SkillCategory[] = [
+        {
+            title: "Professional Experience",
+            icon: <Briefcase className="w-8 h-8" />,
+            skills: ["14+ Years in Software Development", "Project Management", "Team Leadership", "Client Consultation", "Business Analisits", "Technical Writing"],
+            color: "from-blue-500 to-cyan-500"
+        },
         {
             title: "Frontend Development",
             skills: ["React", "TypeScript", "JavaScript", "HTML5", "CSS3", "Tailwind CSS", "Bootstrap", "AngularJS"],
@@ -111,13 +117,69 @@ const Portfolio = () => {
             color: "from-green-500 via-teal-500 to-cyan-500"
         },
         {
+            title: "Cloud & Infrastructure",
+            skills: ["Azure DevOps", "CI/CD"],
+            icon: <Cloud className="w-8 h-8" />,
+            color: "from-green-500 via-teal-500 to-cyan-500"
+        },
+        {
             title: "UI/UX Design",
             skills: ["Figma", "Adobe XD", "User Research", "Wireframing", "Prototyping", "Design Systems"],
             icon: <Palette className="w-8 h-8" />,
             color: "from-yellow-500 via-amber-500 to-orange-500"
+        },
+        {
+            title: "Professional Experience",
+            icon: <Briefcase className="w-8 h-8" />,
+            skills: ["14+ Years in Software Development", "Project Management", "Team Leadership", "Client Consultation"],
+            color: "from-blue-500 to-cyan-500"
+        },
+        {
+            title: "Frontend Development",
+            icon: <Code className="w-8 h-8" />,
+            skills: ["React & TypeScript", "AngularJS", "HTML5/CSS3", "Responsive Design"],
+            color: "from-purple-500 to-pink-500"
+        },
+        {
+            title: "Backend Development",
+            icon: <Server className="w-8 h-8" />,
+            skills: ["ASP.NET Core", "C# Programming", "RESTful APIs", "Entity Framework"],
+            color: "from-green-500 to-teal-500"
+        },
+        {
+            title: "Database Management",
+            icon: <Layers className="w-8 h-8" />,
+            skills: ["SQL Server", "MySQL", "Database Design", "Query Optimization"],
+            color: "from-yellow-500 to-orange-500"
+        },
+        {
+            title: "DevOps & Tools",
+            icon: <Cpu className="w-8 h-8" />,
+            skills: ["Azure DevOps", "Git Version Control", "CI/CD Pipelines", "Docker"],
+            color: "from-red-500 to-pink-500"
+        },
+        {
+            title: "UI/UX Design",
+            icon: <Brush className="w-8 h-8" />,
+            skills: ["Figma Prototyping", "User Research", "Wireframing", "Design Systems"],
+            color: "from-indigo-500 to-purple-500"
         }
     ];
+    // Statistics data
+    const stats = [
+        { icon: <Calendar className="w-6 h-6" />, value: "14+", label: "Years Experience" },
+        { icon: <Target className="w-6 h-6" />, value: "50+", label: "Projects Completed" },
+        { icon: <User className="w-6 h-6" />, value: "27+", label: "Clients Served" },
+        { icon: <Award className="w-6 h-6" />, value: "12+", label: "Certifications" }
+    ];
 
+    // Methodology approach
+    const methodologies = [
+        { icon: <Shield className="w-6 h-6" />, title: "Secure Coding", description: "Implementing best practices for application security" },
+        { icon: <CheckCircle className="w-6 h-6" />, title: "Quality Assurance", description: "Rigorous testing protocols for bug-free delivery" },
+        { icon: <Rocket className="w-6 h-6" />, title: "Performance Optimization", description: "Ensuring fast and efficient application performance" },
+        { icon: <Heart className="w-6 h-6" />, title: "User-Centered Design", description: "Creating intuitive experiences focused on user needs" }
+    ];
     // Experience data
     const experiences: Experience[] = [
         {
@@ -240,47 +302,13 @@ const Portfolio = () => {
             title: "Rollout Controller (ROC) - Telecom",
             description: "Sophisticated workflow system for telecom operators like Robi to optimize network expansion, customer retention, equipment swapping, and vendor management while maintaining ARPU.",
             technologies: ["ASP.NET", "React", "SQL Server", "Entity Framework", "Workflow Engine"],
-            image: "https://images.unsplash.com/photo-1563014959-7aaa83350992?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&h=400&q=80",
+            image: "/images/roc.jpg",
             link: "#",
             github: "#",
             accentColor: "bg-gradient-to-r from-purple-600 to-pink-500"
         }
     ];
 
-    const educations: EducationSection[] = [
-        {
-            title: "Education",
-            icon: "🎓",
-            items: [
-                {
-                    degree: "MSc, Geography & Environment (Appeared)",
-                    institution: "Jahangirnagar University",
-                    year: "2025",
-                    icon: "📚"
-                },
-                {
-                    degree: "Postgraduate Diploma in IT",
-                    institution: "University of Dhaka",
-                    details: "CGPA 3.21",
-                    year: "2018",
-                    icon: "💻"
-                },
-                {
-                    degree: "Bachelor of Social Science (BSS)",
-                    institution: "University of Rajshahi",
-                    details: "Second Class",
-                    year: "2009",
-                    icon: "📊"
-                },
-                {
-                    degree: "Postgraduate Diploma, Information Technology",
-                    institution: "Daffodil International University",
-                    year: "2011",
-                    icon: "🔧"
-                }
-            ]
-        }
-    ];
     // Certification data with AI-generated images
     const certifications: Certification[] = [
         {
@@ -498,8 +526,10 @@ const Portfolio = () => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.7, delay: 0.1 }}
-                            className="md:w-1/2 flex justify-center inline-flex items-center px-4 py-2 rounded-full bg-pink-100 dark:bg-pink-900/30 text-pink-600 dark:text-pink-400 mb-6 shadow-lg"
+                            className="md:w-1/2 justify-center inline-flex items-center px-4 py-2 rounded-full bg-pink-100 dark:bg-pink-900/30 text-pink-600 dark:text-pink-400 mb-6 shadow-lg"
                         >
+                            {/* className="md:w-1/2 flex justify-center inline-flex items-center px-4 py-2 rounded-full bg-pink-100 dark:bg-pink-900/30 text-pink-600 dark:text-pink-400 mb-6 shadow-lg" */}
+
                             <Sparkles className="w-4 h-4 mr-2" />
                             <span className="font-medium">Full-Stack Developer</span>
                         </motion.div>
@@ -631,15 +661,53 @@ const Portfolio = () => {
                         transition={{ duration: 0.6 }}
                         className="text-3xl md:text-4xl font-bold text-center mb-4 bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent"
                     >
-                        Technical Skills
-                    </motion.h2>
+                        Technical Skills & Expertise
+                        {/* <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                            Skills & Expertise
+                        </h2> */}
 
+                    </motion.h2>
                     <motion.div
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={skillsInView ? { opacity: 1, scale: 1 } : {}}
                         transition={{ duration: 0.5, delay: 0.1 }}
                         className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-12"
                     ></motion.div>
+                    <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                        With over 14 years of experience in software development, I bring a comprehensive skill set
+                        that spans across multiple technologies and methodologies to deliver exceptional results.
+                    </p>
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={skillsInView ? { opacity: 1, scale: 1 } : {}}
+                        transition={{ duration: 0.5, delay: 0.1 }}
+                        className="w-20 h-1 bg-gradient-to-r from-red-600 to-orange-500 mx-auto mb-12"
+                    ></motion.div>
+                    {/* Stats Section */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.1 }}
+                        viewport={{ once: true }}
+                        className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16"
+                    >
+                        {stats.map((stat, index) => (
+                            <motion.div
+                                key={index}
+                                whileHover={{ y: -5, scale: 1.05 }}
+                                className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg text-center"
+                            >
+                                <div className="flex justify-center mb-3 text-blue-500">
+                                    {stat.icon}
+                                </div>
+                                <div className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
+                                    {stat.value}
+                                </div>
+                                <div className="text-sm text-gray-600 dark:text-gray-400">{stat.label}</div>
+                            </motion.div>
+                        ))}
+                    </motion.div>
+
 
                     <motion.div
                         variants={skillContainer}
@@ -647,7 +715,8 @@ const Portfolio = () => {
                         animate={skillsInView ? "show" : "hidden"}
                         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
                     >
-                        {skillCategories.map((category, index) => (
+                        {/* {skillCategories.map((category, index) => ( */}
+                        {skillCategories.map((category) => (
                             <motion.div
                                 key={category.title}
                                 variants={skillItem}
@@ -689,7 +758,83 @@ const Portfolio = () => {
                     </motion.div>
                 </div>
             </section>
+            <section id="skills" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-blue-900/20">
+                <div className="container mx-auto px-6">
+                    {/* Header Section */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6 }}
+                        viewport={{ once: true }}
+                        className="text-center mb-16"
+                    >
 
+                    </motion.div>
+
+
+
+                    {/* Skills Grid */}
+
+                    {/* Methodology Section */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.3 }}
+                        viewport={{ once: true }}
+                        className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8"
+                    >
+                        <div className="text-center mb-10">
+                            <h3 className="text-2xl font-bold mb-3 bg-gradient-to-r from-green-500 to-teal-500 bg-clip-text text-transparent">
+                                Development Methodology
+                            </h3>
+                            <p className="text-gray-600 dark:text-gray-300">
+                                My approach combines technical excellence with user-centered design principles
+                            </p>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                            {methodologies.map((method, index) => (
+                                <motion.div
+                                    key={index}
+                                    whileHover={{ y: -5, scale: 1.05 }}
+                                    className="text-center p-6 bg-gray-50 dark:bg-gray-700 rounded-xl"
+                                >
+                                    <div className="flex justify-center mb-4 text-green-500">
+                                        {method.icon}
+                                    </div>
+                                    <h4 className="font-semibold mb-2 text-gray-800 dark:text-white">{method.title}</h4>
+                                    <p className="text-sm text-gray-600 dark:text-gray-300">{method.description}</p>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </motion.div>
+
+                    {/* Call to Action */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.4 }}
+                        viewport={{ once: true }}
+                        className="text-center mt-16"
+                    >
+                        <div className="bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl p-8 text-white">
+                            <BookOpen className="w-12 h-12 mx-auto mb-4" />
+                            <h3 className="text-2xl font-bold mb-3">Ready to Start Your Project?</h3>
+                            <p className="mb-6 opacity-90">
+                                Let's discuss how my skills and expertise can help bring your vision to life
+                            </p>
+                            <motion.button
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                onClick={() => scrollToSection('contact')}
+                                className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+                            >
+                                Get In Touch
+                            </motion.button>
+                        </div>
+                    </motion.div>
+                </div>
+            </section>
             {/* Experience Section */}
             <section id="experience" ref={experienceRef} className="py-20 bg-white dark:bg-gray-900 relative overflow-hidden">
                 {/* Background pattern */}
@@ -935,7 +1080,8 @@ const Portfolio = () => {
                         animate={certsInView ? "show" : "hidden"}
                         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
                     >
-                        {certifications.map((cert, index) => (
+                        {/* {certifications.map((cert, index) => ( */}
+                        {certifications.map((cert) => (
                             <motion.div
                                 key={cert.title}
                                 variants={certItem}
